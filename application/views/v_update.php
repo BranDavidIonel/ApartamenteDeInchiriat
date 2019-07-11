@@ -35,6 +35,7 @@ include_once 'header.php';
   <!--<input type="text" class="form-control col-lg-9" id="imagine">-->
   <?php echo form_input(['name'=>'imagine','placeholder'=>'Imagine','class'=>'form-control col-lg-9',
       'value'=> set_value('imagine',$post->imagine)]); ?>
+   <label for="name" class="col-lg-3">Upload Imagine:</label> 
     <?php echo form_upload(['name'=>'userfile','value'=>set_value('userfile', base_url('assets/imagini/'.$post->imagine))]); ?>
  
  </div>
