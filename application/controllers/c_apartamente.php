@@ -72,14 +72,34 @@ class C_apartamente extends CI_Controller {
                         
         }
         public function change($id){
+            $config=[
+         'upload_path'=>'./assets/imagini/',
+         'allowed_types'=>'gif|png|jpg'
+          ];  
+         $image_up='';  
+         $this->load->library('upload',$config);
+         $this->form_validation->set_error_delimiters();
+         if($this->upload->do_upload('userfile')){
+            
+             $info=$this->upload->data();
+
+             $image_up=$info['raw_name'].$info['file_ext'];
+   
+         }else{
+             echo "nu sa salvat imaginea";
+             exit();
+             
+         }
+            //date preluate din v_update.php                        
             $data=array(
                 
        'nume'=>$this->input->post('nume'),         
        'telefon'=>$this->input->post('nrTelefon'),                 
         'pret'=>$this->input->post('pret'),
          'adresa'=>$this->input->post('adresa'), 
-        'imagine'=>$this->input->post('imagine'),    );      //insert data    
+        'imagine'=>$image_up,    );        
          $this->load->model('queries');
+         //interogare pt update
          if($this->queries->updatePost($data,$id)){
              $this->session->set_flashdata('msg','Sa modificat cu succes!');
          }else{

@@ -39,17 +39,21 @@ include_once 'header.php';
     <?php echo form_upload(['name'=>'userfile','value'=>set_value('userfile', base_url('assets/imagini/'.$post->imagine))]); ?>
  
  </div>
-  <div class="form-check col-lg-9">
-    <label class="form-check-label">
-      <input class="form-check-input" type="checkbox"> Remember me
-    </label>
+   <div class="row">
+   
+  <label for="name" class="col-lg-3">Imaginea veche:</label>    
+  <img width="120" class="col-lg-9" src="<?php echo base_url().'/assets/imagini/'.$post->imagine;?>">
+       
   </div>
-  <!--<button type="submit" class="btn btn-primary col-lg-2">Trimite</button>-->
-  <?php echo form_submit(['name'=>'submit','value'=>'Update','class'=>'btn btn-default col-lg-3']); ?>
-  <?php echo anchor('c_apartamente','Inapoi',['class' =>'btn btn-default col-lg-2']); ?>
+ 
+
+   <?php echo form_submit(['name'=>'submit','value'=>'Update','class'=>'btn btn-default col-lg-3']); ?>     
+  
   <?php
     echo form_close();
- ?>  
+ ?> 
+  
+   <?php echo anchor('c_apartamente','Inapoi',['class' =>'btn btn-default col-lg-2']); ?>
 </div>
 
 <?php
