@@ -19,14 +19,14 @@ class C_login extends CI_Controller{
 			'is_logged_in'   => 1
 		);
 		$this->session->set_userdata($user_session);
-		redirect('LogareController/admin');
+		redirect('c_login/admin');
 	}
 }   
    public function check_user_login(){
    $username=$this->input->post('username');//se trec din formular datele
    $userpassword=$this->input->post('password');
-   $this->load->model('LoginModel');//se incarca modelul
-   if($this->LoginModel->is_logged_in($username,$userpassword)){
+   $this->load->model('modelLogIn');//se incarca modelul
+   if($this->modelLogIn->is_logged_in($username,$userpassword)){
    	 return true;
    }else{
    	$this->form_validation->set_message('check_user_login','Incorrect Username and Password');
@@ -40,7 +40,7 @@ class C_login extends CI_Controller{
   }
 
    public function admin(){
-		$this->load->view('admin');
+		$this->load->view('v_admin');
 
   }
     
