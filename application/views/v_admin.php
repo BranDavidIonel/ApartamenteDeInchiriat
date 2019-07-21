@@ -8,7 +8,11 @@ defined('BASEPATH') OR exit("No direct script access allowed");
 echo '<pre>';
 print_r($this->session->all_userdata());
 echo '</pre>';
-        //redirect('c_apartamente/index'); 
+        //redirect('c_apartamente/index');
+
+
+
+
 ?>
-<a href="<?php echo base_url().'LogareController/logout'; ?>"> Log out</a>
+<a href="<?php echo base_url().'index.php/c_login/logout'; ?>"> Log out</a>
 
