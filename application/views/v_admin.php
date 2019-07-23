@@ -18,7 +18,9 @@ echo $dataUser['is_logged_in'];
 ?>
 
 
- <?php if($dataUser['is_logged_in']==1): ?>
+ <?php
+$dataUser=$this->session->all_userdata();
+ if($dataUser['is_logged_in']==1): ?>
  <?php echo ' <h1>Bun venit '.$dataUser['UserName'].' </h1>'; ?>
        <?php if($msg=$this->session->flashdata('msg')):?>
       <?php echo $msg;?>
