@@ -40,7 +40,8 @@ class C_login extends CI_Controller{
   }
 
    public function admin(){
-		$this->load->view('v_admin');
+		//$this->load->view('v_admin');
+                redirect('c_admin');
 
   }
         

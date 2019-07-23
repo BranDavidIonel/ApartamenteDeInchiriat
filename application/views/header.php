@@ -35,7 +35,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="Logare">
             <a class="dropdown-item" href="<?php echo base_url('index.php/C_login') ?> ">Login</a>
-          <a class="dropdown-item" href="#">Logout</a>
+          <a class="dropdown-item" href="<?php echo base_url('index.php/C_login/logout') ?> ">Logout</a>
         </div>
       </li>
        <li>
