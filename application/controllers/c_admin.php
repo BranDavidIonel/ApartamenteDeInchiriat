@@ -83,7 +83,9 @@ class C_admin extends CI_Controller{
    
          }else{
              echo "nu sa salvat imaginea";
-             exit();
+             $image_up=$this->input->post('oldImage');
+             //echo "imaginea veche: ".$image_up;
+             //exit();
              
          }
             //date preluate din v_update.php                        

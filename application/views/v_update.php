@@ -9,7 +9,7 @@ include_once 'header.php';
       <?php echo $msg;?>
       <?php endif; ?>
       <?php
-       echo form_open_multipart("c_apartamente/change/{$post->id}",['class'=>'form-inline']);
+       echo form_open_multipart("c_admin/change/{$post->id}",['class'=>'form-inline']);
     ?>
       <div class="row">  
   <label for="name" class="col-lg-3">Nume:</label>
@@ -31,12 +31,12 @@ include_once 'header.php';
   <!--<input type="text" class="form-control col-lg-9" id="adresa">-->
    <?php echo form_input(['name'=>'adresa','placeholder'=>'Adresa','class'=>'form-control col-lg-9',
        'value'=> set_value('adresa',$post->adresa)]); ?>
-  <label for="name" class="col-lg-3">Imagine:</label>
+
   <!--<input type="text" class="form-control col-lg-9" id="imagine">-->
-  <?php echo form_input(['name'=>'imagine','placeholder'=>'Imagine','class'=>'form-control col-lg-9',
-      'value'=> set_value('imagine',$post->imagine)]); ?>
+  <?php echo form_input(['name'=>'oldImage','type'=>'hidden','class'=>'form-control col-lg-9',
+      'value'=> set_value('oldImage',$post->imagine)]); ?>
    <label for="name" class="col-lg-3">Upload Imagine:</label> 
-    <?php echo form_upload(['name'=>'userfile','value'=>set_value('userfile', base_url('assets/imagini/'.$post->imagine))]); ?>
+    <?php echo form_upload(['name'=>'userfile','value'=>set_value('userfile', base_url().'/assets/imagini/'.$post->imagine)]); ?>
  
  </div>
    <div class="row">
@@ -53,7 +53,7 @@ include_once 'header.php';
     echo form_close();
  ?> 
   
-   <?php echo anchor('c_apartamente','Inapoi',['class' =>'btn btn-default col-lg-2']); ?>
+   <?php echo anchor('c_admin','Inapoi',['class' =>'btn btn-default col-lg-2']); ?>
 </div>
 
 <?php
