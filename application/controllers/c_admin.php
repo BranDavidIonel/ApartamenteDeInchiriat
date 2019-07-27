@@ -52,6 +52,7 @@ class C_admin extends CI_Controller{
        'telefon'=>$this->input->post('nrTelefon'),                 
         'pret'=>$this->input->post('pret'),
          'adresa'=>$this->input->post('adresa'),
+          'descriere'=>$this->input->post('descriere'),
           'imagine'=>$image_up
         /*'imagine'=>$this->input->post('imagine'),*/    ); 
         
@@ -59,9 +60,13 @@ class C_admin extends CI_Controller{
    
          $this->load->model('queries');
          if($this->queries->addPost($data)){
-             $this->session->set_flashdata('msg','Sa salvat cu succes!');
+             //$this->session->set_flashdata('msg','Sa salvat cu succes!');
          }else{
-             $this->session->set_flashdata('msg','Nu sa salvat!');
+            // $this->session->set_flashdata('msg','Nu sa salvat!');
+            echo "".$this->queries->addPost($data);
+            echo "".$this->input->post('descriere');
+            
+             exit();
              
          }    
          redirect('c_admin/index'); 

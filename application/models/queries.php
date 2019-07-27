@@ -10,7 +10,8 @@ class Queries extends CI_Model{
     public  function addPost($data){
         $this->load->database();
            
-        $this->db->insert('apartamente',$data); 
+        return $this->db->insert('apartamente',$data);
+        
     }
     public function getSinglePost($id){
         $this->db->select('id,nume,telefon,pret,adresa,imagine')->where('id',$id)->from('apartamente');

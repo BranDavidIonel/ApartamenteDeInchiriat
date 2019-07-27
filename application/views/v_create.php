@@ -8,11 +8,13 @@ include_once 'header.php';
       /*if($msg=$this->session->flashdata('msg')):?>
             echo $msg;
             endif; 
-      
+       */
+       ?>
+       <?php
         echo form_open_multipart('c_admin/save',['class'=>'form-inline']);
-        */
+        ?>
        
-     ?>
+    
       <div class="row">  
   <label for="name" class="col-lg-3">Nume:</label>
  
@@ -27,7 +29,8 @@ include_once 'header.php';
    <?php echo form_input(['name'=>'pret','placeholder'=>'Pret','class'=>'form-control col-lg-9']); ?>
   <label for="name" class="col-lg-3">Adresa:</label>
    <?php echo form_input(['name'=>'adresa','placeholder'=>'Adresa','class'=>'form-control col-lg-9']); ?>
-  
+  <label for="name" class="col-lg-3">Detalii:</label>
+  <?php echo form_textarea(['name'=>'descriere', 'value'=>'descriere..', 'class' => 'form-control col-lg-9','rows' => '4', 'cols' => '40']); ?>
   <label for="name" class="col-lg-3">Imagine inserare:</label>
   <?php echo form_upload(['name'=>'userfile','value'=>'Save']); ?>
  </div>
