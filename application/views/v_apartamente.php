@@ -15,6 +15,18 @@
       </tr>
     </thead>
     <tbody>
+         <?php 
+            $atts = array(
+        'class'       =>'btn btn-primary',
+        'width'       => 800,
+        'height'      => 700,
+        'scrollbars'  => 'yes',
+        'status'      => 'yes',
+        'resizable'   => 'yes',
+        'screenx'     => 0,
+        'screeny'     => 0,
+        'window_name' => '_blank');
+        ?>
        <?php if(count($posts)):?> 
        <?php foreach ($posts as $post):?> 
       <tr>
@@ -24,6 +36,18 @@
         <td><?php echo $post->adresa;?></td>
         <td><img width="120" src="<?php echo base_url().'/assets/imagini/'.$post->imagine;?>"></td>
 
+      </tr>
+      <tr>
+          <td>Mai multe detalii..</td>
+          <td>
+            <?php 
+            echo "<center>".anchor("c_apartamente/view/{$post->id}", 'detalii', $atts)."</center>";
+            ?>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+        
       </tr>
       <?php endforeach; ?>
      <?php else: ?>

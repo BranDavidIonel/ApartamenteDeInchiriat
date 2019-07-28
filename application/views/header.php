@@ -24,7 +24,7 @@
           <a class="nav-link" href="<?php echo base_url('index.php') ?>">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="apartamente.php">Apartamente</a>
+          <a class="nav-link" href="<?php echo base_url('index.php') ?>">Apartamente</a>
       </li>
       <li class="nav-item">
           <a class="nav-link" href="<?php echo base_url('index.php/C_image') ?>">Imagine</a>
@@ -39,7 +39,7 @@
         </div>
       </li>
        <li>
-        <form method="POST" action="cauta.php">
+        <form method="POST" action="#">
             
             <input type="text"  placeholder="Cauta" name="Cauta">    
             <button type="submit" class="btn btn-default" name="submitCauta">Cauta</button>

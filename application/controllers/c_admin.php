@@ -43,8 +43,8 @@ class C_admin extends CI_Controller{
              $image_up=$info['raw_name'].$info['file_ext'];
    
          }else{
-             echo "nu sa salvat imaginea";
-             exit();
+            // echo "nu sa salvat imaginea";
+            // exit();
              
          }     
       $data=array(        
@@ -87,7 +87,7 @@ class C_admin extends CI_Controller{
              $image_up=$info['raw_name'].$info['file_ext'];
    
          }else{
-             echo "nu sa salvat imaginea";
+            // echo "nu sa salvat imaginea";
              $image_up=$this->input->post('oldImage');
              //echo "imaginea veche: ".$image_up;
              //exit();
@@ -99,7 +99,8 @@ class C_admin extends CI_Controller{
        'nume'=>$this->input->post('nume'),         
        'telefon'=>$this->input->post('nrTelefon'),                 
         'pret'=>$this->input->post('pret'),
-         'adresa'=>$this->input->post('adresa'), 
+        'adresa'=>$this->input->post('adresa'),
+        'descriere'=>$this->input->post('descriere'),        
         'imagine'=>$image_up,    );        
          $this->load->model('queries');
          //interogare pt update
@@ -133,6 +134,7 @@ public function delete($id){
     redirect('c_admin/index');
     }else{
     $this->session->set_flashdata('msg','Nu sa  sters !');
+    
 
         
     }

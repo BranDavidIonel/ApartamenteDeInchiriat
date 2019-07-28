@@ -31,8 +31,8 @@ include_once 'header.php';
   <!--<input type="text" class="form-control col-lg-9" id="adresa">-->
    <?php echo form_input(['name'=>'adresa','placeholder'=>'Adresa','class'=>'form-control col-lg-9',
        'value'=> set_value('adresa',$post->adresa)]); ?>
-
-  <!--<input type="text" class="form-control col-lg-9" id="imagine">-->
+   <label for="name" class="col-lg-3">Detalii:</label>
+  <?php echo form_textarea(['name'=>'descriere', 'value'=>$post->descriere, 'class' => 'form-control col-lg-9','rows' => '4', 'cols' => '40']); ?>
   <?php echo form_input(['name'=>'oldImage','type'=>'hidden','class'=>'form-control col-lg-9',
       'value'=> set_value('oldImage',$post->imagine)]); ?>
    <label for="name" class="col-lg-3">Upload Imagine:</label> 

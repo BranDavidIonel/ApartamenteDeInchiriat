@@ -14,7 +14,7 @@ class Queries extends CI_Model{
         
     }
     public function getSinglePost($id){
-        $this->db->select('id,nume,telefon,pret,adresa,imagine')->where('id',$id)->from('apartamente');
+        $this->db->select('id,nume,telefon,pret,adresa,descriere, imagine')->where('id',$id)->from('apartamente');
         
         $query=$this->db->get();
         if($query->num_rows()>0){

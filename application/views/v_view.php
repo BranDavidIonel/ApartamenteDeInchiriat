@@ -9,8 +9,10 @@
 	<p><?php echo $post->pret; ?></p>
  <h4>Adresa</h4>
 	<p><?php echo $post->adresa; ?></p>
+ <h4>Descriere</h4>
+        <p><?php echo $post->descriere; ?></p>
  <h4>Imagine</h4>
-	<p><?php echo $post->imagine; ?></p>
+ <p>   <img width="50" class="col-lg-9" src="<?php echo base_url().'/assets/imagini/'.$post->imagine;?>"></p>
 
 
  </div>
