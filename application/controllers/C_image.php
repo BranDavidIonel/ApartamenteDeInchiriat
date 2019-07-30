@@ -24,8 +24,8 @@ echo '</pre>';
 //exit();
 $data['imagine']=$image_path;
 unset($data['submit']);
-$this->load->model('queries');
-if($this->queries->insertImage($data)){
+$this->load->model('Queries');
+if($this->Queries->insertImage($data)){
 echo'imaginea sa inserat';
 
 }
@@ -36,8 +36,8 @@ $this->index();
 }
 
 public function viewImages(){
-$this->load->model('queries');
-$images=$this->queries->getImages();
+$this->load->model('Queries');
+$images=$this->Queries->getImages();
 $this->load->view(viewImage,['images'=>$images]);
 //print_r($images);
 }

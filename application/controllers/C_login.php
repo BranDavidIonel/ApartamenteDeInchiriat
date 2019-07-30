@@ -25,8 +25,8 @@ class C_login extends CI_Controller{
    public function check_user_login(){
    $username=$this->input->post('username');//se trec din formular datele
    $userpassword=$this->input->post('password');
-   $this->load->model('modelLogIn');//se incarca modelul
-   if($this->modelLogIn->is_logged_in($username,$userpassword)){
+   $this->load->model('ModelLogIn');//se incarca modelul
+   if($this->ModelLogIn->is_logged_in($username,$userpassword)){
    	 return true;
    }else{
    	$this->form_validation->set_message('check_user_login','Incorrect Username and Password');

@@ -3,8 +3,8 @@
 class C_admin extends CI_Controller{
     public function index()
 	{
-                $this->load->model('queries');
-                $posts=$this->queries->getPosts();
+                $this->load->model('Queries');
+                $posts=$this->Queries->getPosts();
                 /*
                 echo '<pre>';
                 print_r($posts);
@@ -19,8 +19,8 @@ class C_admin extends CI_Controller{
         }
          public function  update($id){
              //echo $id;
-            $this->load->model('queries');
-            $post=$this->queries->getSinglePost($id);
+            $this->load->model('Queries');
+            $post=$this->Queries->getSinglePost($id);
             $this->load->view('v_update',['post'=>$post]);
             
         }
@@ -58,12 +58,12 @@ class C_admin extends CI_Controller{
         
           
    
-         $this->load->model('queries');
-         if($this->queries->addPost($data)){
+         $this->load->model('Queries');
+         if($this->Queries->addPost($data)){
              //$this->session->set_flashdata('msg','Sa salvat cu succes!');
          }else{
             // $this->session->set_flashdata('msg','Nu sa salvat!');
-            echo "".$this->queries->addPost($data);
+            echo "".$this->Queries->addPost($data);
             echo "".$this->input->post('descriere');
             
              exit();
@@ -102,9 +102,9 @@ class C_admin extends CI_Controller{
         'adresa'=>$this->input->post('adresa'),
         'descriere'=>$this->input->post('descriere'),        
         'imagine'=>$image_up,    );        
-         $this->load->model('queries');
+         $this->load->model('Queries');
          //interogare pt update
-         if($this->queries->updatePost($data,$id)){
+         if($this->Queries->updatePost($data,$id)){
              $this->session->set_flashdata('msg','Sa modificat cu succes!');
          }else{
              $this->session->set_flashdata('msg','Nu sa salvat!');
@@ -116,8 +116,8 @@ class C_admin extends CI_Controller{
         public function view($id){
  //$this->load->view('c_view');
  //echo $id;
-    $this->load->model('queries');
-    $post=$this->queries->getSinglePost($id);
+    $this->load->model('Queries');
+    $post=$this->Queries->getSinglePost($id);
     //echo print_r($post);
     $this->load->view('v_view',['post'=>$post]);
 
@@ -125,10 +125,10 @@ class C_admin extends CI_Controller{
 
 public function delete($id){
     //echo $id;
-    $this->load->model('queries');
-    $post=$this->queries->deletePost($id);
+    $this->load->model('Queries');
+    $post=$this->Queries->deletePost($id);
     
-    if($this->queries->deletePost($id)){
+    if($this->Queries->deletePost($id)){
        
     $this->session->set_flashdata('msg','Sa sters cu succes!');
     redirect('c_admin/index');
