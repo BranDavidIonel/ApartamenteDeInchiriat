@@ -7,8 +7,8 @@ class C_apartamente extends CI_Controller {
 	 
 	public function index()
 	{
-                $this->load->model('queries');
-                $posts=$this->queries->getPosts();
+                $this->load->model('Queries');
+                $posts=$this->Queries->getPosts();
                 /*
                 echo '<pre>';
                 print_r($posts);
@@ -18,8 +18,8 @@ class C_apartamente extends CI_Controller {
 	}
 
         public function view($id){
-        $this->load->model('queries');
-        $post=$this->queries->getSinglePost($id);
+        $this->load->model('Queries');
+        $post=$this->Queries->getSinglePost($id);
         $this->load->view('v_view',['post'=>$post]);
 
         }
