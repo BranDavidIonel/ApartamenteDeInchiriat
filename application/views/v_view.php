@@ -12,7 +12,19 @@
  <h4>Descriere</h4>
         <p><?php echo $post->descriere; ?></p>
  <h4>Imagine</h4>
- <p>   <img width="50" class="col-lg-9" src="<?php echo base_url().'/assets/imagini/'.$post->imagine;?>"></p>
+ <p>   
+   <?php 
+        $imagini=$post->imagine;
+        $imaginiSplit= explode(',', $imagini);
+         echo '<td>';
+        foreach ($imaginiSplit as $imagine) {
+            
+        echo '<img width="80%" src="'.base_url().'/assets/imagini/'.$imagine.'"'.'>';
+
+        }  
+        echo '</td>';
+        ?>
+ </p>
 
 
  </div>
