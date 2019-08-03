@@ -33,7 +33,9 @@ class C_admin extends CI_Controller{
          'upload_path'=>'./assets/imagini/',
          'allowed_types'=>'gif|png|jpg'
           ];  
-         $image_up='';  
+         $image_up='';
+         /*
+         //old code update a single image
          $this->load->library('upload',$config);
          $this->form_validation->set_error_delimiters();
          if($this->upload->do_upload('userfile')){
@@ -46,7 +48,39 @@ class C_admin extends CI_Controller{
             // echo "nu sa salvat imaginea";
             // exit();
              
-         }     
+         }
+          
+          */
+         //$files = array_filter($_FILES['upload']['name']); //something like that to be used before processing files.
+
+        // Count # of uploaded files in array
+        $total = count($_FILES['uploadFiles']['name']);
+
+            // Loop through each file
+            for( $i=0 ; $i < $total ; $i++ ) {
+
+            //Get the temp file path
+            $tmpFilePath = $_FILES['uploadFiles']['tmp_name'][$i];
+
+            //Make sure we have a file path
+            if ($tmpFilePath != ""){
+            //Setup our new file path
+            $newFilePath = "./assets/imagini/" . $_FILES['uploadFiles']['name'][$i];
+
+            //Upload the file into the temp dir
+            if(move_uploaded_file($tmpFilePath, $newFilePath)) {
+            //echo $_FILES['uploadFiles']['name'][$i];
+            $image_up=$image_up.$_FILES['uploadFiles']['name'][$i].',';
+            //echo $image_up;
+            //used exit for check $image_up
+            //exit();
+
+                }
+            }
+        }
+        // I remove last character','  from string with multiple images separetes 
+        //through comma
+       $image_up=mb_substr($image_up, 0, -1); 
       $data=array(        
        'nume'=>$this->input->post('nume'),         
        'telefon'=>$this->input->post('nrTelefon'),                 

@@ -32,7 +32,9 @@ include_once 'header.php';
   <label for="name" class="col-lg-3">Detalii:</label>
   <?php echo form_textarea(['name'=>'descriere', 'value'=>'descriere..', 'class' => 'form-control col-lg-9','rows' => '4', 'cols' => '40']); ?>
   <label for="name" class="col-lg-3">Imagine inserare:</label>
-  <?php echo form_upload(['name'=>'userfile','value'=>'Save']); ?>
+  <?php /* echo form_upload(['name'=>'userfile','value'=>'Save']);*/ ?>
+  <?php echo form_input(['name'=>'uploadFiles[]','type'=>'file','multiple'=>'multiple']) ?>
+  
  </div>
 
   <!--<button type="submit" class="btn btn-primary col-lg-2">Trimite</button>-->

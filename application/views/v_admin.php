@@ -69,7 +69,17 @@ echo anchor('c_admin/create', 'inserare', $atts);
         <td><?php echo $post->telefon;?></td>
         <td><?php echo $post->pret;?></td>
         <td><?php echo $post->adresa;?></td>
-        <td><img width="120" src="<?php echo base_url().'/assets/imagini/'.$post->imagine;?>"></td>
+          <?php 
+        $imagini=$post->imagine;
+        $imaginiSplit= explode(',', $imagini);
+         echo '<td>';
+        foreach ($imaginiSplit as $imagine) {
+            
+        echo '<img width="100" src="'.base_url().'/assets/imagini/'.$imagine.'"'.'>'.'  ';
+
+        }  
+        echo '</td>';
+        ?>
         <td>
             <?php 
             echo anchor("c_admin/view/{$post->id}", 'view', $atts);
