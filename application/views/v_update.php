@@ -35,15 +35,25 @@ include_once 'header.php';
   <?php echo form_textarea(['name'=>'descriere', 'value'=>$post->descriere, 'class' => 'form-control col-lg-9','rows' => '4', 'cols' => '40']); ?>
   <?php echo form_input(['name'=>'oldImage','type'=>'hidden','class'=>'form-control col-lg-9',
       'value'=> set_value('oldImage',$post->imagine)]); ?>
-   <label for="name" class="col-lg-3">Upload Imagine:</label> 
-    <?php echo form_upload(['name'=>'userfile','value'=>set_value('userfile', base_url().'/assets/imagini/'.$post->imagine)]); ?>
+   <label for="name" class="col-lg-3">Upload Imagini noi:</label> 
+    <?php /*echo form_upload(['name'=>'userfile','value'=>set_value('userfile', base_url().'/assets/imagini/'.$post->imagine)]); */ ?>
+   <?php echo form_input(['name'=>'uploadFiles[]','type'=>'file','multiple'=>'multiple']) ?>
  
  </div>
    <div class="row">
    
-  <label for="name" class="col-lg-3">Imaginea veche:</label>    
-  <img width="120" class="col-lg-9" src="<?php echo base_url().'/assets/imagini/'.$post->imagine;?>">
-       
+  <label for="name" class="col-lg-12">Imaginile vechi:</label>
+  
+  <!--<img width="120" class="col-lg-9" src="<?php //echo base_url().'/assets/imagini/'.$post->imagine;?>"> -->
+          <?php 
+        $imagini=$post->imagine;
+        $imaginiSplit= explode(',', $imagini);
+        foreach ($imaginiSplit as $imagine) {
+            
+        echo '<img width="100" class="col-lg-6" src="'.base_url().'/assets/imagini/'.$imagine.'"'.'>'.'  ';
+
+        }  
+        ?>     
   </div>
  
 
