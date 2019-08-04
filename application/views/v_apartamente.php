@@ -11,7 +11,7 @@
         <th>Telefon</th>
         <th>Pret</th>
         <th>Adresa</th>
-        <th>Imagine</th>
+        <!--<th>Imagine</th>-->
       </tr>
     </thead>
     <tbody>
@@ -34,7 +34,8 @@
         <td><?php echo $post->telefon;?></td>
         <td><?php echo $post->pret;?></td>
         <td><?php echo $post->adresa;?></td>
-
+      </tr>
+      <tr>
         <?php 
         $imagini=$post->imagine;
         $imaginiSplit= explode(',', $imagini);
@@ -69,4 +70,40 @@
       <?php endif;?>
     </tbody>
   </table>
+      
+   <!-- other option for table with date   -->   
+   <br><br><br>
+   Incercare diferiata de abordare la aspect
+   <br>
+   <div class="grid-container">
+  <div class="itemHeader">Nume</div>
+  <div class="itemHeader">Telefon</div>
+  <div class="itemHeader">Pret</div>  
+  <div class="itemHeader">Adresa</div>
+   <?php if(count($posts)):?> 
+   <?php foreach ($posts as $post):?> 
+   <?php echo '<div class="itemLineCol1">'.$post->nume.'</div>';?>
+   <?php echo '<div class="itemLineCol2">'.$post->telefon.'</div>';?>
+   <?php echo '<div class="itemLineCol3">'.$post->pret.'</div>';?>
+   <?php echo '<div class="itemLineCol4">'.$post->adresa.'</div>';?>
+    <?php 
+        $imagini=$post->imagine;
+        $imaginiSplit= explode(',', $imagini);
+        foreach ($imaginiSplit as $imagine) {
+            
+        echo '<div class="itemImage">'.'<img width="100" src="'.base_url().'/assets/imagini/'.$imagine.'"'.'>'.'</div>';
+
+        }  
+   ?>
+   <?php 
+    echo '<div class="itemDetails">'.'Mai multe detalii:'."<center>".anchor("c_apartamente/view/{$post->id}", 'detalii', $atts)."</center>".'</div>';
+   ?>
+   <?php endforeach; ?>
+   <?php else: ?>
+    <tr>
+    <td>Nu sunt inregistrari</td>
+   </tr>
+   <?php endif;?>
+
+</div>   
 <?php include_once 'footer.php';?>

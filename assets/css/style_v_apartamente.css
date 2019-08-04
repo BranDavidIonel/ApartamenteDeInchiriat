@@ -1,0 +1,36 @@
+.grid-container {
+  display: grid;
+ grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+.itemStart{
+    grid-row-start: 1;
+}
+.itemLineCol1{
+  grid-column-start:1;
+}
+.itemLineCol2{
+  grid-column-start:2;
+}
+.itemLineCol3{
+  grid-column-start:3;
+}
+.itemLineCol4{
+  grid-column-start:4;
+}
+
+.itemImage {
+  grid-column-end: span 2;
+}
+.itemDetails{
+  grid-column-end:span 4;
+}
