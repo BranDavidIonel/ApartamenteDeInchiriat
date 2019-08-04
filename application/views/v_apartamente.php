@@ -105,5 +105,21 @@
    </tr>
    <?php endif;?>
 
-</div>   
+</div>
+<?php
+ 
+
+     $feed_url='http://www.pro-casa.ro/feed/?post_type=listing';
+    $content = file_get_contents($feed_url);
+    $x = new SimpleXmlElement($content);
+    echo $x;
+     
+    echo "<ul>";
+     
+    foreach($x->channel->item as $entry) {
+        echo "<li><a href='$entry->link' title='$entry->title'>" . $entry->title . "</a></li>";
+        echo 'descriere:'.$entry->description;
+    }
+    echo "</ul>";
+?>   
 <?php include_once 'footer.php';?>
