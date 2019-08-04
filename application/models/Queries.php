@@ -25,7 +25,7 @@ class Queries extends CI_Model{
     }
     public function updatePost($data,$id){
         $this->load->database();
-        $this->db->update('apartamente', $data, array('id' => $id));
+        return $this->db->update('apartamente', $data, array('id' => $id));
     }
     public function deletePost($id){
         $this->load->database();
