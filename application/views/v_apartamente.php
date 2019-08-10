@@ -118,8 +118,41 @@
      
     foreach($x->channel->item as $entry) {
         echo "<li><a href='$entry->link' title='$entry->title'>" . $entry->title . "</a></li>";
-        echo 'descriere:'.$entry->description;
+        echo 'descriere:'.$entry->description.'<br>';
+        echo 'dataPub : '.$entry->pubDate;
     }
     echo "</ul>";
 ?>   
+   <br> test 2 array
+   <br>
+   <?php
+    $nrLinii=0;
+     $linie_import=array();
+    foreach($x->channel->item as $entry) {
+        $linie_data= array();
+        
+        $linie_data[]=$nrLinii;
+        $linie_data[]=$entry->title;
+        $linie_data[]=$entry->link;
+        $linie_data[]=$entry->description;
+        $linie_import['data'][]=$linie_data;
+        unset($linie_data);
+        $nrLinii++;
+              
+    }
+    print_r($linie_import);
+    
+  
+        
+     foreach ($linie_import['data'] as $key2 =>$value_details){
+         echo "data: ".$value_details[0]."<br>";
+         echo "data: ".$value_details[1]."<br>";
+         echo "data: ".$value_details[2]."<br>";
+         echo "data: ".$value_details[3]."<br>";
+     }
+       
+  
+     
+     ?>
+   
 <?php include_once 'footer.php';?>

@@ -42,7 +42,41 @@ class Queries extends CI_Model{
     if($query->num_rows()>0){
     return $query->result();
     }
-}   
+    }
+    public function importDataRss(){
+         $feed_url='http://www.pro-casa.ro/feed/?post_type=listing';
+    $content = file_get_contents($feed_url);
+    $x = new SimpleXmlElement($content);
+    echo $x;
+    $nrLinii=0;
+     $linie_import=array();
+    foreach($x->channel->item as $entry) {
+        $linie_data= array();
+        
+        $linie_data[]=$nrLinii;
+        $linie_data[]=$entry->title;
+        $linie_data[]=$entry->link;
+        $linie_data[]=$entry->description;
+        $linie_import['data'][]=$linie_data;
+        unset($linie_data);
+        $nrLinii++;
+              
+    }
+    print_r($linie_import);
+    
+  
+        
+     foreach ($linie_import['data'] as $key2 =>$value_details){
+         echo "data: ".$value_details[0]."<br>";
+         echo "data: ".$value_details[1]."<br>";
+         echo "data: ".$value_details[2]."<br>";
+         echo "data: ".$value_details[3]."<br>";
+     }
+  
+    return "";
+    }
+    
+
     
 }
 
