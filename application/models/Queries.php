@@ -14,7 +14,7 @@ class Queries extends CI_Model{
         
     }
     public function getSinglePost($id){
-        $this->db->select('id,nume,telefon,pret,adresa,descriere, imagine')->where('id',$id)->from('apartamente');
+        $this->db->select('id,nume,telefon,pret,adresa,descriere, imagine,link_site,data_postari')->where('id',$id)->from('apartamente');
         
         $query=$this->db->get();
         if($query->num_rows()>0){
@@ -43,13 +43,15 @@ class Queries extends CI_Model{
     return $query->result();
     }
     }
-    public function importDataRss(){
-         $feed_url='http://www.pro-casa.ro/feed/?post_type=listing';
+    public function importDataRssPro_casa(){
+        $this->load->database();
+        $feed_url='http://www.pro-casa.ro/feed/?post_type=listing';
     $content = file_get_contents($feed_url);
     $x = new SimpleXmlElement($content);
     echo $x;
     $nrLinii=0;
      $linie_import=array();
+     //insert data in 
     foreach($x->channel->item as $entry) {
         $linie_data= array();
         
@@ -57,6 +59,7 @@ class Queries extends CI_Model{
         $linie_data[]=$entry->title;
         $linie_data[]=$entry->link;
         $linie_data[]=$entry->description;
+        $linie_data[]=$entry->pubDate;
         $linie_import['data'][]=$linie_data;
         unset($linie_data);
         $nrLinii++;
@@ -67,10 +70,20 @@ class Queries extends CI_Model{
   
         
      foreach ($linie_import['data'] as $key2 =>$value_details){
-         echo "data: ".$value_details[0]."<br>";
-         echo "data: ".$value_details[1]."<br>";
-         echo "data: ".$value_details[2]."<br>";
-         echo "data: ".$value_details[3]."<br>";
+         echo "data nr Linii: ".$value_details[0]."<br>";
+         echo "data title: ".$value_details[1]."<br>";
+         echo "data link: ".$value_details[2]."<br>";
+         echo "data description: ".$value_details[3]."<br>";
+         echo "data date publication: ".$value_details[4]."<br>";
+         $getDateSplit= explode(',', $value_details[4]);
+         $time = strtotime($getDateSplit[1]);
+        $newformat = date('Y-m-d h:i:s',$time);
+         echo "data timp: ".$newformat."<br>";
+         $sql = "INSERT INTO apartamente (data_postari,descriere,link_site) VALUES (".$this->db->escape($newformat).", ".$this->db->escape($value_details[1]).", ".$this->db->escape($value_details[2]).")";
+        $this->db->query($sql);
+        //echo $this->db->affected_rows();
+
+       // exit();
      }
   
     return "";

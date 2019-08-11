@@ -210,6 +210,12 @@ public function delete($id){
             
     }
 }
+//function for import
+ public function importSite1(){
+         $this->load->model('Queries');
+    $post=$this->Queries->importDataRssPro_casa();
+     
+ } 
       
         
 }

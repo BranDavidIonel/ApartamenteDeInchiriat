@@ -16,7 +16,12 @@ echo $dataUser['is_logged_in'];
 
 */
 ?>
-
+<?php
+//buton pt import data
+echo '<h2>Import data: </h2> <br>'.'<form action="c_admin/importSite1" method="get">
+            <input type="submit" name="on" value="ImportPro_casa">
+  </form> <br>';
+ ?>
 
  <?php
 $dataUser=$this->session->all_userdata();

@@ -107,7 +107,8 @@
 
 </div>
 <?php
- 
+//verificare import
+ /*
 
      $feed_url='http://www.pro-casa.ro/feed/?post_type=listing';
     $content = file_get_contents($feed_url);
@@ -152,7 +153,7 @@
      }
        
   
-     
+   */  
      ?>
    
 <?php include_once 'footer.php';?>

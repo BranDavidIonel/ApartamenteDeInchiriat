@@ -10,7 +10,11 @@
  <h4>Adresa</h4>
 	<p><?php echo $post->adresa; ?></p>
  <h4>Descriere</h4>
-        <p><?php echo $post->descriere; ?></p>
+ <p><?php echo $post->descriere; ?></p>
+  <h4>Link</h4>
+  <a href="<?php echo $post->link_site; ?>" title="titlu">Mai multe detalii de pe site-ul sursa</a>
+  <h4>Data Postari</h4>
+ <p><?php echo $post->data_postari; ?></p>
  <h4>Imagine</h4>
  <p>   
    <?php 
