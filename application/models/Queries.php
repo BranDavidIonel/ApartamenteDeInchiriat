@@ -43,11 +43,15 @@ class Queries extends CI_Model{
     return $query->result();
     }
     }
+    
+  
     public function importDataRssPro_casa(){
+       
+    
         $this->load->database();
         $feed_url='http://www.pro-casa.ro/feed/?post_type=listing';
     $content = file_get_contents($feed_url);
-    $x = new SimpleXmlElement($content);
+     $x = new SimpleXmlElement($content);
     echo $x;
     $nrLinii=0;
      $linie_import=array();
@@ -79,7 +83,16 @@ class Queries extends CI_Model{
          $time = strtotime($getDateSplit[1]);
         $newformat = date('Y-m-d h:i:s',$time);
          echo "data timp: ".$newformat."<br>";
-         $sql = "INSERT INTO apartamente (data_postari,descriere,link_site) VALUES (".$this->db->escape($newformat).", ".$this->db->escape($value_details[1]).", ".$this->db->escape($value_details[2]).")";
+         $pretExtract='';
+         //search euru in text
+         if(strpos($value_details[1],'euro')){
+         $pretExtract=substr($value_details[1], strpos($value_details[1],'euro' )-5,5);
+         }
+         if(strpos($value_details[1],'Euro')){
+         $pretExtract=substr($value_details[1], strpos($value_details[1],'Euro' )-5,5);
+         }
+         echo '<br> test extract dat'.substr($value_details[1], strpos($value_details[1],'euro' )-5,5).'<br>';
+         $sql = "INSERT INTO apartamente (data_postari,descriere,link_site,pret) VALUES (".$this->db->escape($newformat).", ".$this->db->escape($value_details[1]).", ".$this->db->escape($value_details[2]).", ".$this->db->escape($pretExtract).")";
         $this->db->query($sql);
         //echo $this->db->affected_rows();
 
@@ -88,6 +101,7 @@ class Queries extends CI_Model{
   
     return "";
     }
+   
     
 
     
