@@ -43,8 +43,20 @@ class Queries extends CI_Model{
     return $query->result();
     }
     }
+    //search if it is a new data 
+     function checkDataRssPro_casa($data_postari){
+    $sql = "SELECT id FROM apartamente WHERE data_postari=".$this->db->escape($data_postari);
+        $result=$this->db->query($sql);
+        //daca sa gasit o inregistrare atunci nu se mai insereaza 
+        if($result->num_rows()>=1){
+            return 1;
+        }else{
+            return 0;
+        }
+              
+    }
+        
     
-  
     public function importDataRssPro_casa(){
        
     
@@ -69,10 +81,8 @@ class Queries extends CI_Model{
         $nrLinii++;
               
     }
-    print_r($linie_import);
-    
-  
-        
+    //print_r($linie_import);
+         
      foreach ($linie_import['data'] as $key2 =>$value_details){
          echo "data nr Linii: ".$value_details[0]."<br>";
          echo "data title: ".$value_details[1]."<br>";
@@ -82,23 +92,30 @@ class Queries extends CI_Model{
          $getDateSplit= explode(',', $value_details[4]);
          $time = strtotime($getDateSplit[1]);
         $newformat = date('Y-m-d h:i:s',$time);
-         echo "data timp: ".$newformat."<br>";
+         echo "<br>data timp: ".$newformat."<br>";
          $pretExtract='';
-         //search euru in text
+         //search euro in text
          if(strpos($value_details[1],'euro')){
          $pretExtract=substr($value_details[1], strpos($value_details[1],'euro' )-5,5);
          }
          if(strpos($value_details[1],'Euro')){
          $pretExtract=substr($value_details[1], strpos($value_details[1],'Euro' )-5,5);
          }
-         echo '<br> test extract dat'.substr($value_details[1], strpos($value_details[1],'euro' )-5,5).'<br>';
-         $sql = "INSERT INTO apartamente (data_postari,descriere,link_site,pret) VALUES (".$this->db->escape($newformat).", ".$this->db->escape($value_details[1]).", ".$this->db->escape($value_details[2]).", ".$this->db->escape($pretExtract).")";
-        $this->db->query($sql);
-        //echo $this->db->affected_rows();
+        // echo '<br> test extract dat'.substr($value_details[1], strpos($value_details[1],'euro' )-5,5).'<br>';
+         //daca data nu se gaseste si este una noua atunci se inseareaza in baza de date
+         if(!$this->checkDataRssPro_casa($newformat)){
+             echo "<br>sa inserat ".$value_details[1]."<br>".$newformat."<br><br><br>";
+              $sql = "INSERT INTO apartamente (data_postari,descriere,link_site,pret) VALUES (".$this->db->escape($newformat).", ".$this->db->escape($value_details[1]).", ".$this->db->escape($value_details[2]).", ".$this->db->escape($pretExtract).")";
+             $this->db->query($sql);
+         } else {
+             echo "<br>nu sa inserat ".$value_details[1]."<br>".$newformat."<br><br><br>";    
+         }
+        
+        
 
        // exit();
      }
-  
+    //echo $this->db->affected_rows();
     return "";
     }
    
