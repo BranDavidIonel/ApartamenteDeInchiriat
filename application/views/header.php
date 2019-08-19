@@ -40,9 +40,9 @@
         </div>
       </li>
        <li>
-        <form method="POST" action="#">
+        <form method="POST" action="<?php echo base_url().'index.php/c_apartamente/search'; ?>">
             
-            <input type="text"  placeholder="Cauta" name="Cauta">    
+            <input type="text"  name="cauta" value="">    
             <button type="submit" class="btn btn-default" name="submitCauta">Cauta</button>
            
            

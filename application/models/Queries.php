@@ -43,6 +43,21 @@ class Queries extends CI_Model{
     return $query->result();
     }
     }
+    //daca pretul este mai mic decat cel cerut in cautare
+    public function searchByPrice($pret){
+        $this->load->database();
+        $sql = "SELECT id,nume,telefon,pret,adresa,descriere, imagine,link_site,data_postari FROM apartamente WHERE pret < ".$this->db->escape($pret);
+        $query=$this->db->query($sql);
+         if($query->num_rows()>0){
+             //lasat sa fac ceva in caz ca gaseste mai mult de o inregistrare
+           return $query->result();
+        } else {
+           return $query->result();
+        }
+        
+    } 
+
+
     //search if it is a new data 
      function checkDataRssPro_casa($data_postari){
     $sql = "SELECT id FROM apartamente WHERE data_postari=".$this->db->escape($data_postari);
