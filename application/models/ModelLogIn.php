@@ -5,7 +5,7 @@ class ModelLogIn extends CI_Model{
   public function is_logged_in($username,$userpassword){
 
   	$this->db->where('userName',$username);//verificare date din baza de date 
-  	$this->db->where('password',md5($userpassword));
+  	$this->db->where('password',($userpassword));
         $this->db->from('user');
     $query=$this->db->get();
     if($query->num_rows()==1){
